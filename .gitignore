@@ -6,5 +6,10 @@
 */DerivedDataCache
 */Intermediate
 */Saved
-*.db
-BuildEscapeGame/.vs/BuildEscapeGame/v15/
+
+BuildEscapeGame/Content/StarterContent/
+
+#####################
+# Visual Studio Generated #
+#####################
+BuildEscapeGame/.vs/
