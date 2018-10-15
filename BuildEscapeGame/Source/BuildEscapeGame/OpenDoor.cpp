@@ -64,7 +64,7 @@ float UOpenDoor::GetTotalMassOfActorsOnPlate()
 
 	// find all the overlapping actors
 	TArray<AActor*> OverlappingActors;
-	if (PressurePlate == nullptr) { return; }
+	if (PressurePlate == nullptr) { return 0.f; }
 	PressurePlate->GetOverlappingActors(OUT OverlappingActors);
 
 	// iterate through to get mass
