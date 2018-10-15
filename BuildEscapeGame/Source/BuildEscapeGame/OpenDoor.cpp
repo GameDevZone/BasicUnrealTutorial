@@ -21,40 +21,20 @@ UOpenDoor::UOpenDoor()
 void UOpenDoor::BeginPlay()
 {
 	Super::BeginPlay();
-
-	Owner = GetOwner();
 }
-
-void UOpenDoor::OpenDoor()
-{
-	// rotate
-	Owner->SetActorRotation(FRotator(0.f, -OpenAngle, 0.f));
-}
-
-void UOpenDoor::CloseDoor()
-{
-	// rotate
-	Owner->SetActorRotation(FRotator(0.f, 0.f, 0.f));
-}
-
 
 // Called every frame
 void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	float TimeElapsed = GetWorld()->GetTimeSeconds();
-
-	// ...
 	if (GetTotalMassOfActorsOnPlate() > 50.f) // TODO make into parameter
 	{
-		OpenDoor();
-		LastDoorOpenTime = TimeElapsed;
+		OnOpenRequest.Broadcast();
 	}
-	
-	if (TimeElapsed - LastDoorOpenTime >= DoorCloseDelay)
+	else
 	{
-		CloseDoor();
+		OnCloseRequest.Broadcast();
 	}	
 }
 
