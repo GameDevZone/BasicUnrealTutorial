@@ -27,7 +27,6 @@ void UOpenDoor::BeginPlay()
 
 void UOpenDoor::OpenDoor()
 {
-
 	// rotate
 	Owner->SetActorRotation(FRotator(0.f, -OpenAngle, 0.f));
 }
@@ -65,6 +64,7 @@ float UOpenDoor::GetTotalMassOfActorsOnPlate()
 
 	// find all the overlapping actors
 	TArray<AActor*> OverlappingActors;
+	if (PressurePlate == nullptr) { return; }
 	PressurePlate->GetOverlappingActors(OUT OverlappingActors);
 
 	// iterate through to get mass

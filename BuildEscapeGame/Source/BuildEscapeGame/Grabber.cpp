@@ -33,6 +33,7 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 	
 	// if the physics handle attached
+	if (PhysicsHandle == nullptr) { return; }
 	if (PhysicsHandle->GrabbedComponent != nullptr)
 	{
 		// move the object that we're holding
@@ -78,6 +79,7 @@ void UGrabber::Grab()
 		if (ComponentToGrab != nullptr)
 		{
 			// TODO attach physics handle
+			if (PhysicsHandle == nullptr) { return; }
 			PhysicsHandle->GrabComponentAtLocationWithRotation(
 				ComponentToGrab,
 				NAME_None,
@@ -91,6 +93,7 @@ void UGrabber::Grab()
 void UGrabber::Release()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Grab released"));
+	if (PhysicsHandle == nullptr) { return; }
 	PhysicsHandle->ReleaseComponent();
 }
 
